@@ -3,362 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irgxymods - Sumber Terbaik untuk Mod APK dan Game</title>
+    <title>IRGXYMODS - Koleksi Aplikasi Mod Terlengkap</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset dan gaya dasar */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            line-height: 1.6;
+            background-color: #f5f5f5;
             color: #333;
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            color: #fff;
-            min-height: 100vh;
+            line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        /* Header dan navigasi */
+
+        /* Header Styles */
         header {
-            background: rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to right, #000000, #222222);
             color: white;
             padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
-        
+
         .logo h1 {
-            font-size: 1.8rem;
+            font-size: 28px;
             font-weight: 700;
-            color: #00e6cc;
-            text-shadow: 0 0 10px rgba(0, 230, 204, 0.5);
+            letter-spacing: 1px;
         }
-        
+
         .logo-icon {
-            font-size: 2rem;
-            color: #00e6cc;
-            animation: pulse 2s infinite;
+            font-size: 32px;
+            color: #fff;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
+
         nav ul {
             display: flex;
             list-style: none;
             gap: 25px;
         }
-        
+
         nav a {
             color: white;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
-            padding: 5px 0;
         }
-        
+
         nav a:hover {
-            color: #00e6cc;
+            color: #ffcc00;
         }
-        
+
         nav a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
-            background-color: #00e6cc;
+            background-color: #ffcc00;
             transition: width 0.3s;
         }
-        
+
         nav a:hover::after {
             width: 100%;
         }
-        
-        /* Hero section */
+
+        /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 100px 0 70px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3') no-repeat center center/cover;
-            opacity: 0.2;
-            z-index: -1;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-            color: #00e6cc;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Channel Links */
-        .channels {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: #00e6cc;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background-color: #00e6cc;
-            bottom: -10px;
-            left: 25%;
-        }
-        
-        .section-title p {
-            color: #ccc;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .channels-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .channel-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .channel-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 230, 204, 0.1);
-        }
-        
-        .channel-icon {
-            font-size: 3.5rem;
-            color: #00e6cc;
-            margin-bottom: 20px;
-        }
-        
-        .channel-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .channel-card p {
-            color: #ccc;
-            margin-bottom: 20px;
-            min-height: 60px;
-        }
-        
-        .channel-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #00e6cc 0%, #00b3a0 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 12px 25px;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #000;
+            padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 230, 204, 0.3);
+            border: 2px solid #ffcc00;
         }
-        
-        .channel-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 230, 204, 0.5);
-            background: linear-gradient(135deg, #00b3a0 0%, #008877 100%);
+
+        .btn:hover {
+            background: transparent;
+            color: #ffcc00;
         }
-        
-        /* Social Media */
-        .social-media {
-            padding: 80px 0;
-            background: rgba(0, 0, 0, 0.3);
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
         }
-        
-        .social-grid {
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #222;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: #ffcc00;
+            bottom: 0;
+            left: 20%;
+        }
+
+        /* Mod Categories */
+        .mod-categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
-        
-        .social-card {
-            background: rgba(255, 255, 255, 0.05);
+
+        .category-card {
+            background: white;
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: #222;
+            color: white;
             padding: 20px;
             text-align: center;
-            transition: transform 0.3s;
         }
-        
-        .social-card:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 230, 204, 0.1);
+
+        .card-body {
+            padding: 20px;
         }
-        
-        .social-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #00e6cc;
+
+        .card-body ul {
+            list-style: none;
         }
-        
-        .social-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+
+        .card-body li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
         }
-        
-        .social-btn {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: 0.9rem;
+
+        .card-body li::before {
+            content: '➜';
+            position: absolute;
+            left: 0;
+            color: #ffcc00;
         }
-        
-        .social-btn:hover {
-            background: rgba(0, 230, 204, 0.2);
-        }
-        
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 60px 0 30px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-logo {
-            font-size: 2.5rem;
-            color: #00e6cc;
-            margin-bottom: 20px;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: #ccc;
+
+        .card-body a {
+            color: #333;
             text-decoration: none;
             transition: color 0.3s;
+            display: block;
+            padding: 8px 5px;
+            border-radius: 5px;
         }
-        
-        .footer-links a:hover {
-            color: #00e6cc;
+
+        .card-body a:hover {
+            color: #ffcc00;
+            background: rgba(0, 0, 0, 0.05);
         }
-        
-        .copyright {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ccc;
-            font-size: 0.9rem;
+
+        .card-footer {
+            padding: 15px 20px;
+            background: #f9f9f9;
+            text-align: center;
         }
-        
-        /* Responsif */
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: #ffcc00;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffcc00;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
+                text-align: center;
                 gap: 15px;
             }
-            
+
             nav ul {
                 gap: 15px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .hero h2 {
-                font-size: 2.5rem;
+                font-size: 32px;
             }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .channels-grid,
-            .social-grid {
+
+            .mod-categories {
                 grid-template-columns: 1fr;
             }
         }
@@ -367,111 +307,211 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-gamepad logo-icon"></i>
-                    <h1>IRGXYMODS</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#channels">Saluran</a></li>
-                        <li><a href="#social">Media Sosial</a></li>
-                        <li><a href="#about">Tentang</a></li>
-                    </ul>
-                </nav>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-code logo-icon"></i>
+                <h1>IRGXYMODS</h1>
             </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#mods">Mod Apps</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#donate">Donasi</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content">
-                <h2>Irgxymods</h2>
-                <p>Sumber terbaik untuk mod APK dan game. Temukan berbagai modifikasi aplikasi dan game dengan kualitas terbaik.</p>
-                <a href="#channels" class="channel-btn">Jelajahi Sekarang</a>
-            </div>
+            <h2>Koleksi Aplikasi Mod Terlengkap</h2>
+            <p>Temukan berbagai aplikasi modifikasi berkualitas tinggi untuk kebutuhan harian Anda. Download gratis dan nikmati fitur premium!</p>
+            <a href="#mods" class="btn">Jelajahi Aplikasi</a>
         </div>
     </section>
 
-    <!-- Channel Links -->
-    <section class="channels" id="channels">
-        <div class="container">
-            <div class="section-title">
-                <h2>Saluran Kami</h2>
-                <p>Bergabunglah dengan saluran WhatsApp kami untuk mendapatkan update terbaru tentang mod APK dan game</p>
-            </div>
-            <div class="channels-grid">
-                <div class="channel-card">
-                    <i class="fab fa-whatsapp channel-icon"></i>
-                    <h3>Saluran APK Mod</h3>
-                    <p>Dapatkan berbagai mod aplikasi terbaru dengan fitur premium yang telah dibuka</p>
-                    <a href="https://whatsapp.com/channel/0029Vb5kLy26BIEZjEe5U33j" class="channel-btn" target="_blank">Join Sekarang</a>
-                </div>
-                <div class="channel-card">
-                    <i class="fas fa-gamepad channel-icon"></i>
-                    <h3>Saluran Game Mod</h3>
-                    <p>Temukan mod game terbaru dengan fitur unlimited coins, unlocked levels, dan banyak lagi</p>
-                    <a href="https://whatsapp.com/channel/0029VbBXgPoJP20v92oTrt1R" class="channel-btn" target="_blank">Join Sekarang</a>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="section-title">
+            <h2>Kategori Aplikasi Mod</h2>
         </div>
-    </section>
 
-    <!-- Social Media -->
-    <section class="social-media" id="social">
-        <div class="container">
-            <div class="section-title">
-                <h2>Media Sosial</h2>
-                <p>Ikuti kami di media sosial untuk tetap terupdate dengan konten terbaru kami</p>
+        <div class="mod-categories" id="mods">
+            <!-- Alight Motion Mod -->
+            <div class="category-card">
+                <div class="card-header">
+                    <h3>Alight Motion Mod</h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="https://drive.google.com/drive/folders/1MZ4k9NsP_uC2F59jjNDsVomHuX5ONYOd" target="_blank">Download Alight Motion Mod</a></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <p>Video Editor Premium</p>
+                </div>
             </div>
-            <div class="social-grid">
-                <div class="social-card">
-                    <i class="fab fa-tiktok social-icon"></i>
-                    <h3>TikTok</h3>
-                    <a href="https://www.tiktok.com/@irgxy11?_t=" class="social-btn" target="_blank">@irgxy11</a>
+
+            <!-- Anime Mods -->
+            <div class="category-card">
+                <div class="card-header">
+                    <h3>Anime Mod</h3>
                 </div>
-                <div class="social-card">
-                    <i class="fab fa-youtube social-icon"></i>
-                    <h3>YouTube</h3>
-                    <a href="https://youtube.com/@irgxy_mod?si" class="social-btn" target="_blank">@irgxy_mod</a>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="https://drive.google.com/drive/folders/1dVzk2_tKBxLgmcxke6BJwpygHH2ee1Ci" target="_blank">AnimePlay Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/15NlNga_an6uD8wECr8AzUv4osqdZX3i1" target="_blank">Nonton Anime Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1DTylJiCQygxf8YhhCZelUsl4_xWu55tr" target="_blank">Nonton Kartun Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/14laOzNB-P4ChOvMjDqqSwNTBgIwY3ZGK" target="_blank">Baca Komik Mod</a></li>
+                    </ul>
                 </div>
-                <div class="social-card">
-                    <i class="fab fa-instagram social-icon"></i>
-                    <h3>Instagram</h3>
-                    <a href="https://www.instagram.com/irgi_mods?igsh=" class="social-btn" target="_blank">@irgi_mods</a>
+                <div class="card-footer">
+                    <p>Untuk Penggemar Anime</p>
                 </div>
-                <div class="social-card">
-                    <i class="fab fa-facebook social-icon"></i>
-                    <h3>Facebook</h3>
-                    <a href="https://www.facebook.com/share/16c3tr2gRX/" class="social-btn" target="_blank">Irgxymods</a>
+            </div>
+
+            <!-- Social Media Mods -->
+            <div class="category-card">
+                <div class="card-header">
+                    <h3>Media Sosial Mod</h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="https://drive.google.com/drive/folders/1RI3EWB1YA_97xq-3cVDxxLaTCnWC77LL" target="_blank">WhatsApp GB Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1F6uhRlicb6CFq3RoKtxeukjdD91Dm1HT" target="_blank">YouTube Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1YDQ79EjfMvecPp8FT8wfnlIGnFHTnvOQ" target="_blank">TikTok Mod</a></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <p>Media Sosial Premium</p>
+                </div>
+            </div>
+
+            <!-- Utility Mods -->
+            <div class="category-card">
+                <div class="card-header">
+                    <h3>Utility Mod</h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="https://drive.google.com/drive/folders/1tsCOM3ou5Rm2bupqu0Np0U_rkK8OYbO3" target="_blank">Apk Edit Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1zIg6pDStXkszlkeeo_FzRO498NgCeR5h" target="_blank">Game Booster Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1ZHyGec-OpaQSnej46ThoA4x63TgLRrrp" target="_blank">VPN Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1BiEvnuuSGFSGg3LgcEL6MIquVw1Ycgum" target="_blank">Browser Mod</a></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <p>Alat Bantu Premium</p>
+                </div>
+            </div>
+
+            <!-- Entertainment Mods -->
+            <div class="category-card">
+                <div class="card-header">
+                    <h3>Hiburan Mod</h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="https://drive.google.com/drive/folders/1m9xxsX_5u4LmqFclSFhEL2dbygaek619" target="_blank">Apk Film Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1PRpSks0oRUEbDfYUM_WbskNyX7T_XQ8S" target="_blank">Musik Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1DQjlsMoWVqR1qivvGFrdcYAAwKouGG9J" target="_blank">Donghub Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/14I3stN4qNOV9pzN-3jwibDQOGUGgAH5o" target="_blank">PureStatus Mod</a></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <p>Hiburan Tanpa Batas</p>
+                </div>
+            </div>
+
+            <!-- Other Mods -->
+            <div class="category-card">
+                <div class="card-header">
+                    <h3>Lainnya</h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="https://drive.google.com/drive/folders/1c-mlGCowXU3ccSPrC_G5a4tFJ9jps-dr" target="_blank">Olahraga Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/18rie7_6VMERydWYl5PA2dThvXxmLzsHX" target="_blank">Aplikasi HD Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1SzHj0LTvf-CboNDPnK8PqrQn2a82T5gI" target="_blank">Bot AI Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1kQ-gufpTAwX6gKjPnEwGTUmEsXrvkDQz" target="_blank">Belajar Mod</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1tiRfTDJq4YhBC29UaDCHDJI6HLYJnT5r" target="_blank">Lainnya Mod</a></li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <p>Kategori Lainnya</p>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Donation Section -->
+        <div class="section-title" id="donate">
+            <h2>Dukung Kami</h2>
+        </div>
+        
+        <div class="category-card">
+            <div class="card-header">
+                <h3>Donasi Seikhlasnya</h3>
+            </div>
+            <div class="card-body">
+                <p>Dukungan Anda sangat berarti untuk pengembangan aplikasi mod ini. Terima kasih atas donasinya!</p>
+                <ul>
+                    <li><a href="https://drive.google.com/drive/folders/1GknUL4Zskg7N2HiNkrcxw6W7fxUvNHBE" target="_blank">Link Donasi</a></li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <p>Terima Kasih Atas Dukungannya</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer id="about">
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-gamepad"></i>
+                <div class="footer-section">
+                    <h3>Tentang IRGXYMODS</h3>
+                    <p>Menyediakan berbagai aplikasi modifikasi berkualitas tinggi dengan fitur premium yang dapat diakses secara gratis.</p>
                 </div>
-                <div class="footer-links">
-                    <a href="#home">Beranda</a>
-                    <a href="#channels">Saluran</a>
-                    <a href="#social">Media Sosial</a>
-                    <a href="#about">Tentang Kami</a>
-                    <a href="#">Kebijakan Privasi</a>
-                    <a href="#">Syarat & Ketentuan</a>
+                <div class="footer-section">
+                    <h3>Link Profil</h3>
+                    <p><a href="https://irgi345.github.io/" target="_blank" style="color: #ffcc00;">Profil IRGXYMODS</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Kami</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 Irgxymods. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2023 IRGXYMODS - All Rights Reserved</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
