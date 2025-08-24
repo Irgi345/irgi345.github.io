@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irgxymods - Sumber Terbaik untuk Mod APK dan Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan gaya dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header dan navigasi */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00e6cc;
+            text-shadow: 0 0 10px rgba(0, 230, 204, 0.5);
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: #00e6cc;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: #00e6cc;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00e6cc;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 100px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            color: #00e6cc;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Channel Links */
+        .channels {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #00e6cc;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: #00e6cc;
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .section-title p {
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .channel-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .channel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 230, 204, 0.1);
+        }
+        
+        .channel-icon {
+            font-size: 3.5rem;
+            color: #00e6cc;
+            margin-bottom: 20px;
+        }
+        
+        .channel-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .channel-card p {
+            color: #ccc;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+        
+        .channel-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00e6cc 0%, #00b3a0 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 230, 204, 0.3);
+        }
+        
+        .channel-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 230, 204, 0.5);
+            background: linear-gradient(135deg, #00b3a0 0%, #008877 100%);
+        }
+        
+        /* Social Media */
+        .social-media {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .social-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 230, 204, 0.1);
+        }
+        
+        .social-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #00e6cc;
+        }
+        
+        .social-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .social-btn:hover {
+            background: rgba(0, 230, 204, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 2.5rem;
+            color: #00e6cc;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #00e6cc;
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .channels-grid,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gamepad logo-icon"></i>
+                    <h1>IRGXYMODS</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#channels">Saluran</a></li>
+                        <li><a href="#social">Media Sosial</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Irgxymods</h2>
+                <p>Sumber terbaik untuk mod APK dan game. Temukan berbagai modifikasi aplikasi dan game dengan kualitas terbaik.</p>
+                <a href="#channels" class="channel-btn">Jelajahi Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channel Links -->
+    <section class="channels" id="channels">
+        <div class="container">
+            <div class="section-title">
+                <h2>Saluran Kami</h2>
+                <p>Bergabunglah dengan saluran WhatsApp kami untuk mendapatkan update terbaru tentang mod APK dan game</p>
+            </div>
+            <div class="channels-grid">
+                <div class="channel-card">
+                    <i class="fab fa-whatsapp channel-icon"></i>
+                    <h3>Saluran APK Mod</h3>
+                    <p>Dapatkan berbagai mod aplikasi terbaru dengan fitur premium yang telah dibuka</p>
+                    <a href="https://whatsapp.com/channel/0029Vb5kLy26BIEZjEe5U33j" class="channel-btn" target="_blank">Join Sekarang</a>
+                </div>
+                <div class="channel-card">
+                    <i class="fas fa-gamepad channel-icon"></i>
+                    <h3>Saluran Game Mod</h3>
+                    <p>Temukan mod game terbaru dengan fitur unlimited coins, unlocked levels, dan banyak lagi</p>
+                    <a href="https://whatsapp.com/channel/0029VbBXgPoJP20v92oTrt1R" class="channel-btn" target="_blank">Join Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="social-media" id="social">
+        <div class="container">
+            <div class="section-title">
+                <h2>Media Sosial</h2>
+                <p>Ikuti kami di media sosial untuk tetap terupdate dengan konten terbaru kami</p>
+            </div>
+            <div class="social-grid">
+                <div class="social-card">
+                    <i class="fab fa-tiktok social-icon"></i>
+                    <h3>TikTok</h3>
+                    <a href="https://www.tiktok.com/@irgxy11?_t=" class="social-btn" target="_blank">@irgxy11</a>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-youtube social-icon"></i>
+                    <h3>YouTube</h3>
+                    <a href="https://youtube.com/@irgxy_mod?si" class="social-btn" target="_blank">@irgxy_mod</a>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-instagram social-icon"></i>
+                    <h3>Instagram</h3>
+                    <a href="https://www.instagram.com/irgi_mods?igsh=" class="social-btn" target="_blank">@irgi_mods</a>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-facebook social-icon"></i>
+                    <h3>Facebook</h3>
+                    <a href="https://www.facebook.com/share/16c3tr2gRX/" class="social-btn" target="_blank">Irgxymods</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Beranda</a>
+                    <a href="#channels">Saluran</a>
+                    <a href="#social">Media Sosial</a>
+                    <a href="#about">Tentang Kami</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Irgxymods. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
