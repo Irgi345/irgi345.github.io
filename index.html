@@ -1,0 +1,3877 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRGXYMODS - Aplikasi Mod & Channel Terlengkap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>        
+        :root {
+            --primary: #1e1e2a;
+            --secondary: #2a2a3a;
+            --accent: #fbc02d;
+            --gold: #FFD700;
+            --luxury-gold: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+            --platinum: linear-gradient(135deg, #e5e4e2 0%, #b6b2af 100%);
+            --diamond: linear-gradient(135deg, #b9f2ff 0%, #e0f7fa 100%);
+            --dark: #121212;
+            --light: #f8f8f8;
+            --text: #212121;
+            --background: #ffffff;
+            --verified: #0099ff;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --cubic-bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a14 0%, #1a1a2a 50%, #2d2d42 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.03) 0%, transparent 40%),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHg9IjAiIHk9IjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiIC8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIiBvcGFjaXR5PSIxIiAvPjwvc3ZnPg==');
+            opacity: 0.4;
+            z-index: -2;
+        }
+
+        .gold-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.5);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: var(--gold);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .mode-toggle:hover {
+            transform: rotate(15deg);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--luxury-gold);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 10;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 5s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .logo h1 {
+            font-size: 2.8rem;
+            margin-left: 0.5rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--luxury-gold);
+            border-radius: 3px;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+        }
+
+        header p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .nav-tabs-container {
+            position: relative;
+            z-index: 20;
+            margin: 1.5rem 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 100%;
+            position: relative;
+            z-index: 20;
+        }
+
+        .nav-tab {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 140px;
+            z-index: 20;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .nav-tab:hover::before {
+            transform: translateX(100%);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 1.5rem auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 1rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-container button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--luxury-gold);
+            border: none;
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section {
+            display: none;
+            padding: 2rem 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--luxury-gold);
+            border-radius: 3px;
+        }
+
+        /* Apps Section Styles */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .app-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--luxury-gold);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .app-icon {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+            flex-shrink: 0;
+        }
+
+        .app-icon img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .app-card:hover .app-icon img {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-content {
+            padding: 1.5rem 0 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .app-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .app-meta {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            align-self: center;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .feature i {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-right: 10px;
+            pointer-events: none;
+        }
+
+        .feature span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--luxury-gold);
+            color: #0f1a2a;
+            text-align: center;
+            borderRadius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .download-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .share-btn, .copy-link-btn {
+            flex: 1;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .share-btn::before, .copy-link-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .share-btn:hover::before, .copy-link-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .share-btn:hover, .copy-link-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .share-btn:hover {
+            color: #25D366;
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+
+        .copy-link-btn:hover {
+            color: var(--gold);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        /* New Premium Button Styles */
+        .premium-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFD700 100%);
+            color: var(--dark);
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 215, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 40%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shimmer 3s infinite;
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .premium-btn i {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        /* New Feature Section */
+        .features-section {
+            padding: 4rem 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            margin: 3rem 0;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--luxury-gold);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .feature-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* New FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* New Testimonial Section */
+        .testimonial-section {
+            padding: 4rem 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 4rem;
+            color: rgba(255, 215, 0, 0.2);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+        }
+
+        .testimonial-info h4 {
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* New Stats Section */
+        .stats-section {
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        /* Search suggestions */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 0 0 16px 16px;
+            margin-top: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-top: none;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .search-suggestion {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .search-suggestion:last-child {
+            border-bottom: none;
+        }
+        
+        .search-suggestion:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .search-suggestion i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-suggestion.active {
+            background: rgba(255, 215, 0, 0.15);
+        }
+        
+        /* Gaya untuk hasil pencarian di channels */
+        .channel-search-result {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        /* Animasi untuk highlight hasil pencarian */
+        .highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .app-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .stars {
+            color: var(--gold);
+            margin-right: 8px;
+            display: flex;
+            position: relative;
+        }
+
+        .stars i {
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+
+        .rating-value {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+        }
+
+        .rating-count {
+            font-size: 0.8rem;
+            margin-left: 5px;
+            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Efek shimmer pada card */
+        .app-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 40%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shimmer 3s infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .app-card:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) rotate(30deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(30deg);
+            }
+        }
+        
+        .search-results-info {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        #clear-search {
+            background: var(--luxury-gold);
+            color: var(--dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        #clear-search:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            display: none;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .no-results p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Channels Section Styles */
+        .tagline-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 0 auto 3rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tagline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--luxury-gold);
+        }
+
+        .tagline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+
+        .tagline-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tagline-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+            border-color: rgba(255, 215, 0, 0.1);
+        }
+
+        .tagline-icon {
+            margin-right: 12px;
+            color: var(--gold);
+            font-size: 1.2rem;
+            min-width: 25px;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .tagline-text {
+            font-weight: 500;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            pointer-events: none;
+        }
+
+        .social-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-badge {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: var(--light);
+            font-size: 1.4rem;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-badge:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-badge:hover {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+        }
+
+        .telegram-badge:hover {
+            background: linear-gradient(45deg, #0088cc, #2AABEE);
+            color: white;
+        }
+
+        .social-badge:nth-child(3):hover {
+            background: linear-gradient(45deg, #000000, #434343);
+            color: white;
+        }
+
+        .social-badge:nth-child(4):hover {
+            background: linear-gradient(45deg, #FF0000, #CC0000);
+            color: white;
+        }
+
+        .social-badge:nth-child(5):hover {
+            background: linear-gradient(45deg, #E1306C, #C13584);
+            color: white;
+        }
+
+        .social-badge:nth-child(6):hover {
+            background: linear-gradient(45deg, #3b5998, #4267B2);
+            color: white;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .link-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--luxury-gold);
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.2);
+        }
+
+        .link-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            pointer-events: none;
+        }
+
+        .link-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .verified-badge {
+            color: var(--verified);
+            font-size: 1.2rem;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .link-description {
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--luxury-gold);
+            color: var(--dark);
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .donation {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            margin: 50px 0;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--luxury-gold);
+        }
+
+        .donation-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            font-weight: 700;
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .donation-text {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+        }
+
+        .donation-image {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 30px auto;
+            display: block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .donation-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--luxury-gold);
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            background: var(--luxury-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: var(--luxury-gold);
+            color: var(--dark);
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--luxury-gold);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--gold);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+            transform: translateY(-2px);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: rgba(51, 51, 51, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Premium badge */
+        .premium-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--luxury-gold);
+            color: var(--dark);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Loading animation */
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-tab {
+                min-width: unset;
+                width: 100%;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-icon {
+                font-size: 2.5rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .nav-tab {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 10px;
+            }
+            
+            .nav-tabs-container {
+                padding: 0 10px;
+            }
+
+            .features-grid,
+            .testimonial-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+                        
+        @media (max-width: 480px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tagline-container {
+                padding: 20px 15px;
+            }
+            
+            .tagline-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .link-card {
+                padding: 25px;
+            }
+            
+            .donation {
+                padding: 30px 20px;
+            }
+            
+            .donation-title {
+                font-size: 1.8rem;
+            }
+            
+            .social-badges {
+                gap: 10px;
+            }
+            
+            .social-badge {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">
+            <i class="fas fa-crown logo-icon"></i>
+            <h1>IRGXYMODS</h1>
+        </div>
+        <p>Platform Eksklusif Download Aplikasi Mod & Channel Premium Terlengkap dengan Sentuhan Indonesia</p>
+        
+        <div class="nav-tabs-container">
+            <div class="nav-tabs">
+                <div class="nav-tab active" data-target="apps-section">Aplikasi Mod</div>
+                <div class="nav-tab" data-target="channels-section">IrgxyMods</div>
+                <div class="nav-tab" data-target="accounts-section">Akun Premium & Cc Hd</div>
+                <div class="nav-tab" data-target="features-section">Fitur Eksklusif</div>
+                <div class="nav-tab" data-target="testimonial-section">Testimoni</div>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Cari aplikasi mod...">
+            <button id="search-btn"><i class="fas fa-search"></i> Cari</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Apps Section -->
+        <section id="apps-section" class="section active">
+            <h2 class="section-title">Aplikasi Mod Premium</h2>
+            
+            <div class="search-results-info" id="search-results-info">
+                Menampilkan hasil untuk: <strong id="search-term"></strong>
+                <button id="clear-search">
+                    <i class="fas fa-times"></i> Hapus pencarian
+                </button>
+            </div>
+            
+            <div class="no-results" id="no-results">
+                <i class="fas fa-search"></i>
+                <h3>Tidak ada hasil ditemukan</h3>
+                <p>Tidak ada aplikasi yang cocok dengan pencarian Anda. Coba kata kunci lain.</p>
+            </div>
+            
+            <div class="apps-grid">
+                <div class="app-card">
+                    <span class="premium-badge">PREMIUM</span>
+                    <div class="app-icon">
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250903_201352.jpg?updatedAt=1756905753623" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐖𝐈𝐍𝐊𝐈𝐓 𝐌𝐎𝐃🪀</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.7</span>
+                            <span class="rating-count">(40.5K ulasan)</span>
+                        </div>           
+
+                        <div class="app-meta">Versi : 2.0.2</div>
+                        <p>Winkit Premium Eksklusif — Presenting features enhance photos/videos to HD and convenience meet in the palm of your hand. Unlimited access for those who use the exclusive photo/video enhancement features.</p>
+                        <div class="feature">
+                            <i class="fas fa-crown"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/9lKSup8f" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="WINKIT MOD" data-appurl="https://sfl.gl/9lKSup8f">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/9lKSup8f">
+                                <i class="fas fa-link"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250912234007482.jpg?updatedAt=1757695260916" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐖𝐈𝐍𝐊 𝐌𝐎𝐃🎉</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.8</span>
+                            <span class="rating-count">(630.5K ulasan)</span>
+                        </div>
+                        
+                      <div class="app-meta">Versi : 2.16.5</div>
+                        <p>Wink Premium Eksklusif — Presenting features enhance photos/videos to UHD AI 4K and convenience meet in the palm of your hand. Unlimited access for those who use the exclusive photo/video enhancement features.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://chat.whatsapp.com/D0PTvzUF9AJKHo0KKvANuW?mode=ems_copy_c" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="WINKIT MOD" data-appurl="https://chat.whatsapp.com/D0PTvzUF9AJKHo0KKvANuW?mode=ems_copy_c">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://chat.whatsapp.com/D0PTvzUF9AJKHo0KKvANuW?mode=ems_copy_c">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>                
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250428152108403.jpg?updatedAt=1756902694625" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐀𝐋𝐈𝐆𝐇𝐓 𝐌𝐎𝐓𝐈𝐎𝐍 𝐕𝐈𝐏🎟️</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-value">4.0</span>
+                            <span class="rating-count">(1.1JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 9.9.9.9.9</div>
+                        <p>Alight Motion Vip Premium supports presets above 5MB++, supports all XML presets, and accesses exclusive video/photo editing features.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/gla3RDQ" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="ALIGHT MOTION MOD" data-appurl="https://sfl.gl/gla3RDQ">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/gla3RDQ">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250916201236309.jpg?updatedAt=1758028512431" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐑𝐄𝐌𝐈𝐍𝐈 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.3</span>
+                            <span class="rating-count">(5.4JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 3.7.1126.202516929</div>
+                        <p>Remini premium exclusive features : Presenting features enhance photos/videos to HD 2K and convenience meet in the palm of your hand, no ads. Unlimited access for those who use the exclusive photo/video enhancement features</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/gkAm" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="REMINI MOD" data-appurl="https://sfl.gl/gkAm">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/gkAm">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>         
+
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250918200846668.jpg?updatedAt=1758330180707" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐅𝐑𝐄𝐄 𝐅𝐈𝐑𝐄 𝐌𝐀𝐗 𝐁𝐄𝐓𝐀</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.4</span>
+                            <span class="rating-count">(27JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 2.114.1</div>
+                        <p>Free fire Max Beta premium exclusive features : unlock all vault, unlock all emote, unlock all skin senjata, setting diamond/gold, anti banned dan support all device</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://docs.google.com/document/d/1wYcmQ-HNN6vNFH4IlWkFaMUg-cDbGReLTGkMYX7qBxA/edit?usp=drivesdk" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="FREE FIRE MAX BETA" data-appurl="https://docs.google.com/document/d/1wYcmQ-HNN6vNFH4IlWkFaMUg-cDbGReLTGkMYX7qBxA/edit?usp=drivesdk">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://docs.google.com/document/d/1wYcmQ-HNN6vNFH4IlWkFaMUg-cDbGReLTGkMYX7qBxA/edit?usp=drivesdk">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250913000411535.jpg?updatedAt=1757696710745" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 𝐆𝐁 𝐌𝐎𝐃🗃️</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.6</span>
+                            <span class="rating-count">(576K ulasan)</span>
+                        </div>
+                                
+                     <div class="app-meta">Versi : 54666967</div>
+                        <p>WhatsApp GB Premium exclusive features : View deleted chats, post status within 3 minutes, immune to banned/kenon wa, download photos/videos at one glance and other.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/ohulN7F" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="WHATSAPP GB MOD" data-appurl="https://sfl.gl/ohulN7F">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/ohulN7F">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>                
+                                
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250426154850136.jpg?updatedAt=1756904285439" alt="IrgxyMods Icon">                
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐒𝐏𝐎𝐓𝐈𝐅𝐘 𝐌𝐎𝐃🎧</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.5</span>
+                            <span class="rating-count">(32JT ulasan)</span>
+                        </div>
+                        
+                      <div class="app-meta">Versi : 9.0.72.967</div>
+                        <p>Spotify premium and exclusive features, listen to music without limits and the freedom to explore the world of music without limits</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/vxH5l2Z" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="SPOTIFY MOD" data-appurl="https://sfl.gl/vxH5l2Z">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/vxH5l2Z">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250903_203128.jpg?updatedAt=1756906341586" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐔𝐋𝐓𝐑𝐀 𝐌𝐎𝐓𝐈𝐎𝐍 𝐌𝐎𝐃🎟️</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.1</span>
+                            <span class="rating-count">(80.2K ulasan)</span>
+                        </div>
+                        
+                      <div class="app-meta">Versi : 5.0.280</div>
+                        <p>Ultra Motion Premium supports presets above 5MB++, supports all XML presets, and accesses exclusive video/photo editing features.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/9zTvd" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="ULTRA MOTION MOD" data-appurl="https://sfl.gl/9zTvd">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/9zTvd">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250903225856867.jpg?updatedAt=1756915190113" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐌𝐎𝐃📽️</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.1</span>
+                            <span class="rating-count">(154JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 20.37.45</div>
+                        <p>YouTube Premium is exclusive used to watch video content or shorts in 2K HD quality, without ads while watching videos or shorts, and supports background playback. https://sfl.gl/z7tcfQ</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/F4G7v05" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="YOUTUBE MOD" data-appurl="https://sfl.gl/F4G7v05">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/F4G7v05">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250903_201359.jpg?updatedAt=1756905754121" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐏𝐈𝐂𝐒𝐀𝐑𝐓 𝐌𝐎𝐃🎨</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.2</span>
+                            <span class="rating-count">(11JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 28.0</div>
+                        <p>Editor foto lengkap dengan semua fitur premium tanpa iklan</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/I7KsKf0" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="PICSART MOD" data-appurl="https://sfl.gl/I7KsKf0">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/I7KsKf0">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250903_201406.jpg?updatedAt=1756905753651" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐂𝐇𝐀𝐓 𝐆𝐏𝐓 𝐌𝐎𝐃🤖</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.7</span>
+                            <span class="rating-count">(26JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 8.250908.3.1052</div>
+                        <p>Chat GPT premium and exclusive features, unlimited access to AI bots without time limits and no ads</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/zWYupR" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="CHAT GPT MOD" data-appurl="https://sfl.gl/zWYupR">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/zWYupR">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250904110057100.jpg?updatedAt=1756958525168" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐌𝐎𝐕𝐈𝐄 𝐁𝐎𝐗 𝐌𝐎𝐃🎬</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.7</span>
+                            <span class="rating-count">(23.7K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 3.0.6.0804</div>
+                        <p>Movie Box Premium: Access all the latest exclusive films, blockbusters, movies, and original series right in the palm of your hand! All HD quality, lag-free, and free of annoying ads.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/zzdP1A" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="MOVIE BOX MOD" data-appurl="https://sfl.gl/zzdP1A">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/zzdP1A">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                                        
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250904102734888.jpg?updatedAt=1756956520447" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐗𝐘 𝐕𝐏𝐍 𝐌𝐎𝐃🌐</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.3</span>
+                            <span class="rating-count">(500K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 5.0.837</div>
+                        <p>XY VPN premium and exclusive features, experience unlimited internet speed without limits and the freedom to browser the internet without limits</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/iLpOxT9" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="XY VPN MOD" data-appurl="https://sfl.gl/iLpOxT9">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/iLpOxT9">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250904130539092.jpg?updatedAt=1756966064185" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐂𝐀𝐏𝐂𝐔𝐓 𝐌𝐎𝐃👾</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-value">4.0</span>
+                            <span class="rating-count">(11JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 16.3.0 & 15.8.0</div>
+                        <p>Capcut mod with premium and exclusive features, ad-free, template support and no errors/lags</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://docs.google.com/document/d/1QDeD9bUNgjzK9IXCLQQCzeXZB0EhR5ui_VhfJPW_Sik/edit?usp=drivesdk" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="CAPCUT MOD" data-appurl="https://docs.google.com/document/d/1QDeD9bUNgjzK9IXCLQQCzeXZB0EhR5ui_VhfJPW_Sik/edit?usp=drivesdk">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://docs.google.com/document/d/1QDeD9bUNgjzK9IXCLQQCzeXZB0EhR5ui_VhfJPW_Sik/edit?usp=drivesdk">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>                
+                
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250905234325547.jpg?updatedAt=1757126403272" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐗𝐑𝐄𝐂𝐎𝐑𝐃𝐄𝐑 𝐌𝐎𝐃🎥</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.8</span>
+                            <span class="rating-count">(7JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 9.9.9.9.9</div>
+                        <p>Xrecorder Mod offers many premium features such as 4k resolution screen recording with smooth audio, free from ad interruptions and watermarks.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/DRajo0W" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="XRECORDER MOD" data-appurl="https://sfl.gl/DRajo0W">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/DRajo0W">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                   </div> 
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250907221001754.jpg?updatedAt=1757258038267" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐔𝐂 𝐁𝐑𝐎𝐖𝐒𝐄𝐑 𝐌𝐎𝐃🌐</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.2</span>
+                            <span class="rating-count">(21JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 14.9.2.1373</div>
+                        <p>UC Browser Premium exclusive features : unlimited internet browsing, data saving, ultra-fast download speeds, and access all VPN.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/QWUdqPG" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="UC BROWSER MOD" data-appurl="https://sfl.gl/QWUdqPG">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/QWUdqPG">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div> 
+                </div>                    
+                    
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250912205503157.jpg?updatedAt=1757693993190" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐑𝐄𝐌𝐎𝐕𝐄 𝐁𝐆 𝐌𝐎𝐃🏷️</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.9</span>
+                            <span class="rating-count">(763.4K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi 2.285.87</div>
+                        <p>Background Eraser Premium exclusive features : remove bg, kanvas, foto id, delete object, AI filter, AI expansion, texture of object and others.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/i92ERekH" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="BACKGROUND ERASER MOD" data-appurl="https://sfl.gl/i92ERekH">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/i92ERekH">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                               </div>     
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250914193150271.jpg?updatedAt=1757853468704" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐍𝐎𝐓𝐄 𝐕𝐈𝐃𝐄𝐎 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.5</span>
+                            <span class="rating-count">(57.9K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 7.7.1</div>
+                        <p>Note Video Premium exclusive features : create video/photo edits with special effects and complete editing features.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/QEke" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="NOTE VIDEO MOD" data-appurl="https://sfl.gl/QEke">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/QEke">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>           
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250914193507349.jpg?updatedAt=1757853468456" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐌𝐎𝐕𝐈𝐄𝐒 𝐇𝐔𝐁 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-value">4.0</span>
+                            <span class="rating-count">(10.8K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi 2.285.87</div>
+                        <p>Movies Hub Premium exclusive features : to watch 4k HD quality films and equipped with subtitles.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/TOKx" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="MOVIES HUB MOD" data-appurl="https://sfl.gl/TOKx">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/TOKx">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                              
+                </div>           
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250914193553187.jpg?updatedAt=1757853468850" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐂𝐀𝐒𝐓𝐋𝐄 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.4</span>
+                            <span class="rating-count">(3.5K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 2.0.4</div>
+                        <p>Castle Premium exclusive features : to watch 2k UHD quality cinema and equipped with subtitles.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/8kCkLL" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="CASTLE MOD" data-appurl="https://sfl.gl/8kCkLL">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/8kCkLL">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                              
+                </div>           
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250914193234170.jpg?updatedAt=1757853468878" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐆𝐄𝐌𝐌𝐘 𝐀𝐈 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.5</span>
+                            <span class="rating-count">(71.8K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 3.3.8</div>
+                        <p>Gemmy AI premium exclusive features : unlimited access to AI bots without time limits, generate images, create videos with AI and no ads.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/wnBn3bK8" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="GEMMY AI MOD" data-appurl="https://sfl.gl/wnBn3bK8">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/wnBn3bK8">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                               
+                </div>           
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250916193900134.jpg?updatedAt=1758028512901" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐃𝐔𝐎𝐋𝐈𝐍𝐆𝐎 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.8</span>
+                            <span class="rating-count">(35JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 3.3.8</div>
+                        <p>Duolingo premium exclusive features: learn over 40 languages worldwide, ad-free, access to the latest exclusive features and a personalized Practice Hub..</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/p79h" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="DUOLINGO MOD" data-appurl="https://sfl.gl/p79h">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/p79h">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                               
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250916201154017.jpg?updatedAt=1758028512787" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐖𝐀𝐋𝐋𝐂𝐑𝐀𝐅𝐓 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.3</span>
+                            <span class="rating-count">(1JT ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 3.58.0</div>
+                        <p>Wallcraft premium exclusive features: Unlock all 3D HD wallpapers, free download premium wallpapers dan no ads and support all device.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/js8R" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="WALLCRAFT MOD" data-appurl="https://sfl.gl/js8R">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/js8R">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                               
+                </div>          
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250916194435384.jpg?updatedAt=1758028512644" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐏𝐀𝐍𝐃𝐀 𝐓𝐎𝐔𝐂𝐇 𝐏𝐑𝐎 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.1</span>
+                            <span class="rating-count">(5.2K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 8.9.(892)</div>
+                        <p>Panda Touch Pro premium exclusive features: unlock all paid analogs, unlock 120fps, for playing high graphics games without lag.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/tEuYon" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="PANDA TOUCH PRO MOD" data-appurl="https://sfl.gl/tEuYon">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/tEuYon">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                               
+                </div>          
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250916195554258.jpg?updatedAt=1758028512987" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐌𝐀𝐓𝐄 𝐀𝐈 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.1</span>
+                            <span class="rating-count">(11K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 1.5.0(153)</div>
+                        <p>Mate AI premium exclusive features : unlimited access to AI bots without time limits, generate images, create videos with AI, no ads and equipped with deep seek, gemini, chat gpt and AI bot others.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/pYQy" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="MATE AI MOD" data-appurl="https://sfl.gl/pYQy8">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/pYQy">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                               
+                </div>          
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/_20250916195131059.jpg?updatedAt=1758028511888" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐀𝐈 𝐂𝐇𝐀𝐓 𝐁𝐎𝐓 𝐏𝐑𝐎 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-value">4.0</span>
+                            <span class="rating-count">(128K ulasan)</span>
+                        </div>
+                        
+                     <div class="app-meta">Versi : 5.2.2.0(5220)</div>
+                        <p>AI Chat Bot Pro premium exclusive features : unlimited access to AI Pro bots without time limits, generate images, create videos Veo3 with AI, no ads, to do schoolwork and other things </p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/oJcst" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="AI CHAT BOT PRO MOD" data-appurl="https://sfl.gl/oJcst">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/oJcst">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>                               
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250916214414216.jpg?updatedAt=1758033901572" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐌𝐎𝐕𝐈𝐄 𝐁𝐀𝐒𝐄 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.1</span>
+                            <span class="rating-count">(110K ulasan)</span>
+                        </div>
+                     <div class="app-meta">Versi : 5.3.22</div>
+                        <p>Movie Base premium exclusive features : Access all the latest exclusive films, Netflix, Disney+, prime video, apple tv, max, hulu, paramount+, movies and original series right in the palm of your hand! All HD quality, lag-free, and free of annoying ads..</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/5wqnTR3" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="MOVIE BASE MOD" data-appurl="https://sfl.gl/5wqnTR3">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/5wqnTR3">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>              
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250924211338269.jpg?updatedAt=1758723342422" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐒𝐓𝐈𝐊𝐄𝐑 𝐋𝐘 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.6</span>
+                            <span class="rating-count">(2.2JT ulasan)</span>
+                        </div>
+                     <div class="app-meta">Versi : 3.21.3</div>
+                        <p>Stiker.Ly premium exclusive features : Access all the newest and oldest premium stickers, unlock all stickers, without error and free of annoying ads.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/zNkscX" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="MOVIE BASE MOD" data-appurl="https://sfl.gl/zNkscX">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/zNkscX">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>             
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/_20250928194908146.jpg?updatedAt=1759064140388" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐌𝐎𝐈𝐒𝐄𝐒 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.7</span>
+                            <span class="rating-count">(366.K ulasan)</span>
+                        </div>
+                     <div class="app-meta">Versi : 2.9.2.0 (1225)</div>
+                        <p>Moises is a personal audio laboratory that empowers your creativity with the highest precision. Separate vocals, bass, drums—everything—with perfect clarity. This is not just the original moises app, this is your exclusive premium access</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/X3gvY" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="MOISES MOD" data-appurl="https://sfl.gl/X3gvY">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/X3gvY">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>             
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250928195045010.jpg?updatedAt=1759064139927" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐀𝐈 𝐂𝐇𝐀𝐓𝐁𝐎𝐓 𝐍𝐎𝐕𝐀 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.4</span>
+                            <span class="rating-count">(1.8JT ulasan)</span>
+                        </div>
+                     <div class="app-meta">Versi : 3.8.23 (30823)</div>
+                        <p>Ai Chat Bot Nova Premium Fiture : Kecerdasan Prioritas: Akses model AI terkuat tanpa delay, kapan saja.
+Kreativitas Tak Terbatas: Minta analisis mendalam, naskah brilian, atau ide-ide visioner.
+Pengalaman Tanpa Batas: Bebas dari limit dan iklan, fokus pada pencapaian Anda. Dukungan Eksklusif: Layanan prioritas untuk anggota mod.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/9M0scfq" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="AI CHATBOT NOVA" data-appurl="https://sfl.gl/9M0scfq">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/9M0scfq">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>             
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250928195335980.jpg?updatedAt=1759064140091" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐂𝐇𝐀𝐓𝐁𝐎𝐓 𝐀𝐈 𝐕𝐈𝐏</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.7</span>
+                            <span class="rating-count">(764.K ulasan)</span>
+                        </div>
+                     <div class="app-meta">Versi : 2.7.3</div>
+                        <p>AI Chat Bot Premium Fitur : Akses Prioritas: Nikmati model AI terkuat tanpa delay. Kreativitas Tanpa Batas: Dapatkan analisis mendalam dan ide-ide visioner.
+Pengalaman Mulus: Bebas dari iklan dan limitasi penggunaan.
+Dukungan Eksklusif: Layanan anggota mod 24/7.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/kqfpE" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="AI CHATBOT AI VIP" data-appurl="https://sfl.gl/kqfpE">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/kqfpE">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>             
+                </div>
+
+               <div class="app-card">
+                    <div class="app-icon">
+                    <span class="premium-badge">PREMIUM</span>
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250928195149733.jpg?updatedAt=1759064139857" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐂𝐇𝐀𝐓 𝐎𝐍 𝐀𝐈 𝐌𝐎𝐃</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.6</span>
+                            <span class="rating-count">(369.K ulasan)</span>
+                        </div>
+                     <div class="app-meta">Versi : 1.72.610-663(663)</div>
+                        <p>Chat On AI Premium: Kecerdasan Tanpa Batas. Untuk pikiran yang menuntut lebih.Akses prioritas mod ke model AI tercanggih, kreativitas tanpa batas, dan bantuan produktivitas yang mulus. Rasakan kemewahan memiliki asisten AI pribadi yang benar-benar memahami kebutuhan Anda.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Unlock Premium Dan Support All Device</span>
+                        </div>
+                        <a href="https://sfl.gl/THXO19iY" class="download-btn">
+                            <i class="fas fa-download"></i> Download Sekarang
+                        </a>
+                        <div class="app-actions">
+                                <button class="share-btn" data-appname="AI CHAT ON AI MOD" data-appurl="https://sfl.gl/THXO19iY">
+                                <i class="fas fa-share-alt"></i> Share Mod
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/THXO19iY">
+                                <i class="fas fa-copy"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>             
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Channels Section -->
+        <section id="channels-section" class="section">
+            <h2 class="section-title">IRGXY MODS PREMIUM CHANNEL</h2>
+            
+            <div class="tagline-container">
+                <div class="tagline-grid">
+                    <div class="tagline-item">
+                        <div class="tagline-icon"><i class="fas fa-crown"></i></div>
+                        <div class="tagline-text">Alight Motion Premium & Mod Free</div>
+                    </div>
+                    <div class="tagline-item">
+                        <div class="tagline-icon"><i class="fas fa-crown"></i></div>
+                        <div class="tagline-text">Apk HD & Wink & Winkit Premium Free</div>
+                    </div>
+                    <div class="tagline-item">
+                        <div class="tagline-icon"><i class="fas fa-crown"></i></div>
+                        <div class="tagline-text">Apk Premium & Mod Free</div>
+                    </div>
+                    <div class="tagline-item">
+                        <div class="tagline-icon"><i class="fas fa-crown"></i></div>
+                        <div class="tagline-text">Apk JB Free</div>
+                    </div>
+                    <div class="tagline-item">
+                        <div class="tagline-icon"><i class="fas fa-crown"></i></div>
+                        <div class="tagline-text">Share Account Apk Free</div>
+                    </div>
+                    <div class="tagline-item">
+                        <div class="tagline-icon"><i class="fas fa-crown"></i></div>
+                        <div class="tagline-text">Apk Game Premium & Mod Free</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-badges">
+                <a href="https://whatsapp.com/channel/0029Vb5kLy26BIEZjEe5U33j" class="social-badge whatsapp-badge" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/irgxyzmods" class="social-badge telegram-badge" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@irgxy11" class="social-badge" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://youtube.com/@irgxy_mod" class="social-badge" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/irgi_mods" class="social-badge" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/share/16c3tr2gRX/" class="social-badge" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+            
+            <div class="links-grid">
+                <div class="link-card">
+                    <i class="link-icon fab fa-whatsapp"></i>
+                    <h3 class="link-title">Saluran Apk Premium/Mod <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Join our WhatsApp channel for the latest modded and premium apps with exclusive features unlocked.</p>
+                    <a href="https://whatsapp.com/channel/0029VbBXgPoJP20v92oTrt1R" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> Join Channel
+                    </a>
+                </div>
+                
+                <div class="link-card">
+                    <i class="link-icon fas fa-gamepad"></i>
+                    <h3 class="link-title">Saluran Games Premium/Mod <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Join our WhatsApp channel for modded games with unlimited resources, unlocked levels, and premium features.</p>
+                    <a href="https://whatsapp.com/channel/0029VbBXgPoJP20v92oTrt1R" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> Join Channel
+                    </a>
+                </div>
+                
+                <div class="link-card">
+                    <i class="link-icon fab fa-telegram"></i>
+                    <h3 class="link-title">Telegram Channel <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Follow our Telegram channel for additional mod content, early updates, and exclusive releases.</p>
+                    <a href="https://t.me/irgxyzmods" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-telegram"></i> Follow Us
+                    </a>
+                </div>
+                
+                <div class="link-card">
+                    <i class="link-icon fab fa-whatsapp"></i>
+                    <h3 class="link-title">WhatsApp Group <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Join our community WhatsApp group to discuss mods, get help, and share your experiences.</p>
+                    <a href="https://chat.whatsapp.com/FnQHscuLa4e0Xss0UKHn5D?mode=ems_copy_c" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> Join Group
+                    </a>
+                </div>
+                
+                <div class="link-card">
+                    <i class="link-icon fab fa-tiktok"></i>
+                    <h3 class="link-title">TikTok <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Follow us on TikTok for latest mod apk info, mod previews, and entertaining content related to modding.</p>
+                    <a href="https://www.tiktok.com/@irgxy11" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i> Follow Us
+                    </a>
+                </div>
+                
+                <div class="link-card">
+                    <i class="link-icon fab fa-youtube"></i>
+                    <h3 class="link-title">YouTube <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Subscribe to our YouTube channel for tutorials, mod reviews, latest mod application and gameplay videos with mod features.</p>
+                    <a href="https://youtube.com/@irgxy_mod" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-youtube"></i> Subscribe
+                    </a>
+                </div>
+                
+                <div class="link-card">
+                    <i class="link-icon fab fa-instagram"></i>
+                    <h3 class="link-title">Instagram <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Follow our Instagram for updates, behind-the-scenes content, and highlights from our modding community.</p>
+                    <a href="https://www.instagram.com/irgi_mods" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i> Follow Us
+                    </a>
+                </div>
+                
+                <div class="link-card">
+                    <i class="link-icon fab fa-facebook"></i>
+                    <h3 class="link-title">Facebook <span class="verified-badge"><i class="fas fa-badge-check"></i></span></h3>
+                    <p class="link-description">Like our Facebook page for the latest news, updates, and community events related to modding.</p>
+                    <a href="https://www.facebook.com/share/16c3tr2gRX/" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i> Like Page
+                    </a>
+                </div>                
+            </div>
+            
+            <div class="donation">
+                <h2 class="donation-title">Support IrgxyMods</h2>
+                <p class="donation-text">Your donations help us continue providing quality mods, apps, and games for free. We appreciate any support that helps maintain our services and create new content.</p>
+                <a href="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250824003928342.png?updatedAt=1756133482961" target="_blank" rel="noopener noreferrer">
+                    <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250824003928342.png?updatedAt=1756133482961" alt="Donation Methods" class="donation-image">
+                </a>
+                <a href="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250824003928342.png?updatedAt=1756133482961" class="premium-btn" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-heart"></i> Donate Now
+                </a>
+            </div>
+        </section>
+
+        <!-- Accounts Section -->
+        <section id="accounts-section" class="section">
+            <h2 class="section-title">Akun Premium Terbaru</h2>
+            
+            <div class="apps-grid">
+                <div class="app-card">
+                    <span class="premium-badge">PREMIUM</span>
+                    <div class="app-icon">
+                        <img src="https://ik.imagekit.io/IrgxyMods/BackgroundEraser_20250920_214813759.png?updatedAt=1758379801360" alt="Viu Premium Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐕𝐈𝐔 𝐏𝐑𝐄𝐌𝐈𝐔𝐌🎬</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.8</span>
+                            <span class="rating-count">(1.2JT ulasan)</span>
+                        </div>
+                        <div class="app-meta">Masa Aktif: 1 Tahun</div>
+                        <p>Account viu premium 1 tahun tanpa eror dan ngeleg. Nikmati tayangan eksklusif, bebas iklan, dan fitur premium lainnya tanpa batas.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Akses Tanpa Iklan & Konten Eksklusif</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Support All Device & Multi Login</span>
+                        </div>
+                        <a href="https://sfl.gl/twqaBe1" class="download-btn">
+                            <i class="fas fa-download"></i> Dapatkan Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="VIU PREMIUM 1 TAHUN" data-appurl="https://sfl.gl/twqaBe1">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/twqaBe1">
+                                <i class="fas fa-link"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <span class="premium-badge">PREMIUM</span>
+                    <div class="app-icon">
+                        <img src="https://ik.imagekit.io/IrgxyMods/quality_restoration_20250904130539092.jpg?updatedAt=1756966064185" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐂𝐀𝐏𝐂𝐔𝐓 𝐏𝐑𝐄𝐌𝐈𝐔𝐌</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">3.8</span>
+                            <span class="rating-count">(11JT ulasan)</span>
+                        </div>
+                        <div class="app-meta">Masa Aktif: 1 Bulan</div>
+                        <p>Account CapCut premium 1 bulan tanpa eror dan ngeleg. Nikmati tayangan eksklusif, bebas iklan, dan fitur premium lainnya tanpa batas.</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Akses Tanpa Iklan & Konten Eksklusif</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Support All Device & Multi Login</span>
+                        </div>
+                        <a href="https://sfl.gl/mjeyR0IY" class="download-btn">
+                            <i class="fas fa-download"></i> Dapatkan Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="CAPCUT PREMIUM 1 BULAN" data-appurl="https://sfl.gl/mjeyR0IY">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://sfl.gl/mjeyR0IY">
+                                <i class="fas fa-link"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <span class="premium-badge">PREMIUM</span>
+                    <div class="app-icon">
+                        <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250926_191926.jpg?updatedAt=1758889304649" alt="IrgxyMods Icon">
+                    </div>
+                    <div class="app-content">
+                        <h3>𝐂𝐂 𝐇𝐃 𝐀𝐌</h3>
+                        <div class="app-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                               <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-value">4.5</span>
+                            <span class="rating-count">(25 ulasan)</span>
+                        </div>
+                        <div class="app-meta">Cc Hd : 1-5</div>
+                        <p>CC HD & KECE Free 1-5 By Admin IrgxyMods buat kalian🚀</p>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Support Link XML & 5MB++</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Support All Device</span>
+                        </div>
+                        <a href="https://docs.google.com/document/d/1aHz57ydCvykRcLjh5fWUj3YR4NUcpgK6v0M_5R9MZHY/edit?usp=drivesdk" class="download-btn">
+                            <i class="fas fa-download"></i> Dapatkan Sekarang
+                        </a>
+                        <div class="app-actions">
+                            <button class="share-btn" data-appname="CC HD & KECE FREE" data-appurl="https://docs.google.com/document/d/1aHz57ydCvykRcLjh5fWUj3YR4NUcpgK6v0M_5R9MZHY/edit?usp=drivesdk">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="copy-link-btn" data-appurl="https://docs.google.com/document/d/1aHz57ydCvykRcLjh5fWUj3YR4NUcpgK6v0M_5R9MZHY/edit?usp=drivesdk">
+                                <i class="fas fa-link"></i> Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- New Features Section -->
+        <section id="features-section" class="section">
+            <h2 class="section-title">Fitur Eksklusif</h2>
+            
+            <div class="features-section">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>Akses Premium</h3>
+                        <p>Nikmati akses penuh ke semua fitur premium tanpa batas dengan mod eksklusif dari IRGXYMODS.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Update Rutin</h3>
+                        <p>Dapatkan update aplikasi mod terbaru setiap hari dengan fitur-fitur terkini dan perbaikan bug.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Aman & Terpercaya</h3>
+                        <p>Semua mod telah melalui proses verifikasi ketat untuk memastikan keamanan perangkat Anda.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Dukungan 24/7</h3>
+                        <p>Tim support irgxymods siap membantu Anda 24 jam melalui Telegram untuk masalah teknis dan bantuan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Aplikasi Mod</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">2.3K+</div>
+                        <div class="stat-label">Pengguna Aktif</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Kepuasan Pengguna</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Dukungan Team IrgxyMods</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Testimonial Section -->
+        <section id="testimonial-section" class="section">
+            <h2 class="section-title">Testimoni Pengguna</h2>
+            
+            <div class="testimonial-section">
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Saya sudah menggunakan mod dari IRGXYMODS selama 4 bulan dan sangat puas dengan kualitasnya. Semua aplikasi mod bekerja dengan sempurna tanpa kendala.</p>
+                        <div class="testimonial-author">
+                            <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922215300365.jpg?updatedAt=1758552857340" alt="User" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Zavian Arkana</h4>
+                                <p>Premium User</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Very responsive support for new users! When I ran into a problem, they were very quick to help me via Telegram and WhatsApp. Highly recommended!</p>
+                        <div class="testimonial-author">
+                            <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="User" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Thalita Calista</h4>
+                                <p>New User</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Mod dari IRGXYMODS memang beda! Fitur premiumnya benar-benar terbuka semua dan tidak ada iklan yang mengganggu. Terima kasih Modder IRGXYMODS!</p>
+                        <div class="testimonial-author">
+                            <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922220207083.jpg?updatedAt=1758553401702" alt="User" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>Caelum Sylvan Aludra</h4>
+                                <p>Member Premium</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Apk Mod dari web irgxymods.my.id 100% work dan ada alight motion vip support preset 5mb++😋</p>
+                        <div class="testimonial-author">
+                            <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922220945759.jpg?updatedAt=1758553851182" alt="User" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <h4>********</h4>
+                                <p>Member Saluran</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="donation">
+                <h2 class="donation-title">Gabung Komunitas Eksklusif</h2>
+                <p class="donation-text">Dapatkan akses ke konten eksklusif, update terbaru, dan dukungan prioritas dengan menjadi anggota komunitas premium IRGXYMODS.</p>
+                <a href="https://t.me/irgxyzmods" class="premium-btn" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-telegram"></i> Gabung Sekarang
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Butuh Bantuan Premium?</h2>
+            <div class="contact-info">
+                <p>Jika Anda mengalami masalah dengan aplikasi mod atau menemukan error pada aplikasi mod, jangan ragu untuk menghubungi kami melalui Telegram.</p>
+                <p>Irgxy Mods siap membantu Anda selama 24 jam.</p>
+                <a href="https://t.me/irgxyzmods" class="whatsapp-btn">
+                    <i class="fab fa-brands fa-telegram"></i> Hubungi Kontak Telegram 
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast">Link berhasil disalin!</div>
+
+    <footer>
+        <p>&copy; 2025 IRGXY MODS - Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+        <p>✨Support Modder IrgxyMods✨</p>
+        <div class="footer-links">
+            <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" id="privacy-link">Privacy Policy</a>
+            <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" id="terms-link">Terms of Service</a>
+            <a href="https://t.me/irgxyzmods" class="footer-link" id="contact-link">Contact Us</a>
+            
+            <a href="https://policies.google.com/faq?hl=id" class="footer-link" id="faq-link">FAQ</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Fungsi untuk navigasi tab
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const floatingNavBtns = document.querySelectorAll('.floating-nav-btn');
+        const sections = document.querySelectorAll('.section');
+        
+        function activateSection(target) {
+            // Update active tab
+            navTabs.forEach(t => t.classList.remove('active'));
+            floatingNavBtns.forEach(b => b.classList.remove('active'));
+            
+            // Show target section
+            sections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === target) {
+                    section.classList.add('active');
+                }
+            });
+
+            // Reset pencarian
+            document.getElementById('search-input').value = '';
+            resetSearch();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-target');
+                activateSection(target);
+                
+                // Update floating nav button
+                floatingNavBtns.forEach(btn => {
+                    if (btn.getAttribute('data-target') === target) {
+                        btn.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        floatingNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                activateSection(target);
+                
+                // Update nav tab
+                navTabs.forEach(tab => {
+                    if (tab.getAttribute('data-target') === target) {
+                        tab.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.createElement('div');
+        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTopBtn.id = 'backToTop';
+        document.body.appendChild(backToTopBtn);
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Fungsi untuk melakukan pencarian di kedua section
+        function performSearch() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+            const activeSection = document.querySelector('.section.active').id;
+            const searchResultsInfo = document.getElementById('search-results-info');
+            const searchTermElement = document.getElementById('search-term');
+            const noResults = document.getElementById('no-results');
+            
+            let foundCount = 0;
+            
+            if (searchTerm === '') {
+                // Jika pencarian kosong, reset tampilan
+                if (activeSection === 'apps-section') {
+                    resetAppsSearch();
+                } else if (activeSection === 'channels-section') {
+                    resetChannelsSearch();
+                } else if (activeSection === 'accounts-section') {
+                    resetAccountsSearch();
+                } else if (activeSection === 'features-section') {
+                    resetFeaturesSearch();
+                } else if (activeSection === 'testimonial-section') {
+                    resetTestimonialSearch();
+                }
+                searchResultsInfo.style.display = 'none';
+                noResults.style.display = 'none';
+                return;
+            }
+            
+            // Lakukan pencarian berdasarkan section aktif
+            if (activeSection === 'apps-section') {
+                foundCount = performSearchApps(searchTerm);
+            } else if (activeSection === 'channels-section') {
+                foundCount = performSearchChannels(searchTerm);
+            } else if (activeSection === 'accounts-section') {
+                foundCount = performSearchAccounts(searchTerm);
+            } else if (activeSection === 'features-section') {
+                foundCount = performSearchFeatures(searchTerm);
+            } else if (activeSection === 'testimonial-section') {
+                foundCount = performSearchTestimonial(searchTerm);
+            }
+            
+            // Tampilkan informasi hasil pencarian
+            if (foundCount > 0) {
+                searchTermElement.textContent = `"${searchTerm}"`;
+                searchResultsInfo.style.display = 'block';
+                noResults.style.display = 'none';
+            } else {
+                searchResultsInfo.style.display = 'none';
+                noResults.style.display = 'block';
+            }
+        }
+        
+        // Fungsi khusus pencarian aplikasi
+        function performSearchApps(searchTerm) {
+            const appCards = document.querySelectorAll('#apps-section .app-card');
+            let foundCount = 0;
+            
+            appCards.forEach(card => {
+                const appName = card.querySelector('h3').textContent.toLowerCase();
+                const appDescription = card.querySelector('p').textContent.toLowerCase();
+                
+                if (appName.includes(searchTerm) || appDescription.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    
+                    // Highlight teks yang cocok
+                    highlightText(card, searchTerm);
+                    
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            return foundCount;
+        }
+        
+        // Fungsi khusus pencarian channels
+        function performSearchChannels(searchTerm) {
+            const taglineItems = document.querySelectorAll('.tagline-item');
+            const linkCards = document.querySelectorAll('.link-card');
+            const socialBadges = document.querySelectorAll('.social-badge');
+            let foundCount = 0;
+
+            // Cari di tagline items
+            taglineItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    highlightText(item, searchTerm);
+                    foundCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Cari di link cards
+            linkCards.forEach(card => {
+                const title = card.querySelector('.link-title').textContent.toLowerCase();
+                const description = card.querySelector('.link-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    highlightText(card, searchTerm);
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Cari di social badges
+            socialBadges.forEach(badge => {
+                const href = badge.getAttribute('href') || '';
+                const iconClass = badge.querySelector('i').className.toLowerCase();
+                
+                if (href.includes(searchTerm) || iconClass.includes(searchTerm)) {
+                    badge.style.display = 'flex';
+                    foundCount++;
+                } else {
+                    badge.style.display = 'none';
+                }
+            });
+
+            return foundCount;
+        }
+
+        // Fungsi khusus pencarian accounts
+        function performSearchAccounts(searchTerm) {
+            const appCards = document.querySelectorAll('#accounts-section .app-card');
+            let foundCount = 0;
+            
+            appCards.forEach(card => {
+                const appName = card.querySelector('h3').textContent.toLowerCase();
+                const appDescription = card.querySelector('p').textContent.toLowerCase();
+                
+                if (appName.includes(searchTerm) || appDescription.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    
+                    // Highlight teks yang cocok
+                    highlightText(card, searchTerm);
+                    
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            return foundCount;
+        }
+
+        // Fungsi khusus pencarian features
+        function performSearchFeatures(searchTerm) {
+            const featureCards = document.querySelectorAll('.feature-card');
+            const statCards = document.querySelectorAll('.stat-card');
+            let foundCount = 0;
+            
+            featureCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    highlightText(card, searchTerm);
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            statCards.forEach(card => {
+                const number = card.querySelector('.stat-number').textContent.toLowerCase();
+                const label = card.querySelector('.stat-label').textContent.toLowerCase();
+                
+                if (number.includes(searchTerm) || label.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    highlightText(card, searchTerm);
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            return foundCount;
+        }
+
+        // Fungsi khusus pencarian testimonial
+        function performSearchTestimonial(searchTerm) {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            let foundCount = 0;
+            
+            testimonialCards.forEach(card => {
+                const text = card.querySelector('.testimonial-text').textContent.toLowerCase();
+                const author = card.querySelector('h4').textContent.toLowerCase();
+                
+                if (text.includes(searchTerm) || author.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    highlightText(card, searchTerm);
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            return foundCount;
+        }
+        
+        // Fungsi reset pencarian apps
+        function resetAppsSearch() {
+            const appCards = document.querySelectorAll('#apps-section .app-card');
+            appCards.forEach(card => {
+                card.style.display = 'flex';
+                removeHighlights(card);
+            });
+        }
+        
+        // Fungsi reset pencarian channels
+        function resetChannelsSearch() {
+            const taglineItems = document.querySelectorAll('.tagline-item');
+            const linkCards = document.querySelectorAll('.link-card');
+            const socialBadges = document.querySelectorAll('.social-badge');
+            
+            taglineItems.forEach(item => {
+                item.style.display = 'flex';
+                removeHighlights(item);
+            });
+            
+            linkCards.forEach(card => {
+                card.style.display = 'block';
+                removeHighlights(card);
+            });
+            
+            socialBadges.forEach(badge => {
+                badge.style.display = 'flex';
+            });
+        }
+
+        // Fungsi reset pencarian accounts
+        function resetAccountsSearch() {
+            const appCards = document.querySelectorAll('#accounts-section .app-card');
+            appCards.forEach(card => {
+                card.style.display = 'flex';
+                removeHighlights(card);
+            });
+        }
+
+        // Fungsi reset pencarian features
+        function resetFeaturesSearch() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            const statCards = document.querySelectorAll('.stat-card');
+            
+            featureCards.forEach(card => {
+                card.style.display = 'block';
+                removeHighlights(card);
+            });
+            
+            statCards.forEach(card => {
+                card.style.display = 'block';
+                removeHighlights(card);
+            });
+        }
+
+        // Fungsi reset pencarian testimonial
+        function resetTestimonialSearch() {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            testimonialCards.forEach(card => {
+                card.style.display = 'block';
+                removeHighlights(card);
+            });
+        }
+        
+        // Fungsi untuk menandai teks yang cocok
+        function highlightText(element, searchTerm) {
+            const texts = element.querySelectorAll('h3, p, .tagline-text, .link-description, .testimonial-text, h4, .stat-number, .stat-label');
+            
+            texts.forEach(textNode => {
+                const originalHTML = textNode.innerHTML;
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                const newHTML = originalHTML.replace(regex, '<span class="highlight">$1</span>');
+                textNode.innerHTML = newHTML;
+            });
+        }
+        
+        // Fungsi untuk menghapus highlight
+        function removeHighlights(element) {
+            const highlights = element.querySelectorAll('.highlight');
+            highlights.forEach(highlight => {
+                highlight.outerHTML = highlight.innerHTML;
+            });
+        }
+        
+        // Fungsi untuk mereset semua pencarian
+        function resetSearch() {
+            const searchResultsInfo = document.getElementById('search-results-info');
+            const noResults = document.getElementById('no-results');
+            
+            resetAppsSearch();
+            resetChannelsSearch();
+            resetAccountsSearch();
+            resetFeaturesSearch();
+            resetTestimonialSearch();
+            
+            searchResultsInfo.style.display = 'none';
+            noResults.style.display = 'none';
+        }
+        
+        // Event listener untuk tombol pencarian
+        document.getElementById('search-btn').addEventListener('click', performSearch);
+        
+        // Event listener untuk tombol Enter pada input pencarian
+        document.getElementById('search-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // Event listener untuk tombol hapus pencarian
+        document.getElementById('clear-search').addEventListener('click', function() {
+            document.getElementById('search-input').value = '';
+            resetSearch();
+        });
+        
+        // Reset pencarian ketika input dikosongkan
+        document.getElementById('search-input').addEventListener('input', function() {
+            if (this.value === '') {
+                resetSearch();
+            }
+        });
+        
+        // Fungsi untuk menampilkan toast notifikasi
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Fungsi untuk berbagi aplikasi
+        function shareApp(appName, appUrl) {
+            if (navigator.share) {
+                // Web Share API didukung
+                navigator.share({
+                    title: appName,
+                    text: `*Fitur Unggulan Aplikasi Mod By Irgxy Mods :*
+
+*· ✅ Akses Penuh ke Konten Premium: Nikmati fitur-fitur premium, mod dan ekslusif dari irgxy mods💎*
+*· ✅ Berbagai Pilihan Apps Mod/Premium Terpopuler: Dari  hiburan, komunikasi, editor video/photo/hd, produktivitas, personalisasi hingga kecantikan, semua tersedia dengan mod/premium terbaik🌐*
+*· ✅ Update Setiap Hari: Kami selalu menghadirkan mod/premium terbaru untuk aplikasi terkini, sehingga Anda tidak akan ketinggalan zaman🔥*
+*· ✅ Aman dan Terpercaya: Semua mod telah melalui proses verifikasi ketat untuk memastikan keamanan perangkat Anda💯*
+*· ✅ Apk Mod User-Friendly: Desain Apps mod yang intuitif dan mudah digunakan, membuat Anda nyaman dalam menjelajahi Berbagai pilihan mod Apps by IrgxyMods✨*
+ 
+*LINK DOWNLOAD ${appName}*`,
+                    url: appUrl
+                })
+                .then(() => console.log('Berhasil berbagi'))
+                .catch((error) => console.log('Error berbagi:', error));
+            } else {
+                // Fallback untuk browser yang tidak mendukung Web Share API
+                const shareText = `*Fitur Unggulan Aplikasi Mod By Irgxy Mods :*
+
+*· ✅ Akses Penuh ke Konten Premium: Nikmati fitur-fitur premium, mod dan ekslusif dari irgxy mods💎*
+*· ✅ Berbagai Pilihan Apps Mod/Premium Terpopuler: Dari  hiburan, komunikasi, editor video/photo/hd, produktivitas, personalisasi hingga kecantikan, semua tersedia dengan mod/premium terbaik🌐*
+*· ✅ Update Setiap Hari: Kami selalu menghadirkan mod/premium terbaru untuk aplikasi terkini, sehingga Anda tidak akan ketinggalan zaman🔥*
+*· ✅ Aman dan Terpercaya: Semua mod telah melalui proses verifikasi ketat untuk memastikan keamanan perangkat Anda💯*
+*· ✅ Apk Mod User-Friendly: Desain Apps mod yang intuitif dan mudah digunakan, membuat Anda nyaman dalam menjelajahi Berbagai pilihan mod Apps by IrgxyMods✨* ${appName} *⚫LINK DOWNLOAD APLIKASI : ${appUrl}*`;
+                prompt('Salin link berikut untuk berbagi:', shareText);
+            }
+        }
+        
+        // Fungsi untuk menyalin link ke clipboard
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                // Clipboard API didukung
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        showToast('Link berhasil disalin!');
+                    })
+                    .catch(err => {
+                        console.error('Gagal menyalin: ', err);
+                        fallbackCopyTextToClipboard(text);
+                    });
+            } else {
+                // Fallback untuk browser lama
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+        
+        // Fallback function untuk menyalin teks
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast('Link berhasil disalin!');
+                } else {
+                    showToast('Gagal menyalin link');
+                }
+            } catch (err) {
+                console.error('Fallback: Gagal menyalin teks', err);
+                showToast('Gagal menyalin link');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        // Event delegation untuk tombol share dan copy
+        document.addEventListener('click', function(e) {
+            // Tombol share
+            if (e.target.classList.contains('share-btn') || e.target.closest('.share-btn')) {
+                const btn = e.target.classList.contains('share-btn') ? e.target : e.target.closest('.share-btn');
+                const appName = btn.getAttribute('data-appname');
+                const appUrl = btn.getAttribute('data-appurl');
+                shareApp(appName, appUrl);
+            }
+            
+            // Tombol copy link
+            if (e.target.classList.contains('copy-link-btn') || e.target.closest('.copy-link-btn')) {
+                const btn = e.target.classList.contains('copy-link-btn') ? e.target : e.target.closest('.copy-link-btn');
+                const appUrl = btn.getAttribute('data-appurl');
+                copyToClipboard(appUrl);
+            }
+        });
+
+        // Animasi elemen saat scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.app-card, .link-card, .tagline-item, .feature-card, .testimonial-card, .stat-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.app-card, .link-card, .tagline-item, .feature-card, .testimonial-card, .stat-card').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        // Run animation on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        // Run once on load
+        window.addEventListener('load', animateOnScroll);
+
+        // Create gold particles background
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles-container';
+            document.body.appendChild(particlesContainer);
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'gold-particle';
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                particle.style.left = `${x}vw`;
+                particle.style.top = `${y}vh`;
+                
+                // Random animation
+                const duration = 20 + Math.random() * 20;
+                const delay = Math.random() * 5;
+                
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Add keyframes for particle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% {
+                    transform: translate(0, 0) rotate(0deg);
+                    opacity: 0.7;
+                }
+                25% {
+                    transform: translate(10px, 15px) rotate(5deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: translate(0, 30px) rotate(0deg);
+                    opacity: 0.7;
+                }
+                75% {
+                    transform: translate(-10px, 15px) rotate(-5deg);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles
+        createParticles();
+    </script>
+</body>
+</html>
