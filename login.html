@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login Akun — IRGXYMODS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+
+<style>
+  /* ===== LOGIN PAGE STYLES ===== */
+  .login-page-wrapper {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .login-page-card {
+    background: rgba(30, 30, 42, 0.75);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 215, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: loginCardIn 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  @keyframes loginCardIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .login-page-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 5px;
+    background: var(--gold-gradient);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+
+  .login-page-card::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .login-page-card > * { position: relative; z-index: 1; }
+
+  .login-page-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .login-page-logo .logo-icon {
+    font-size: 2.8rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
+  }
+  .login-page-logo h1 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.5px;
+  }
+
+  .login-page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: block;
+  }
+  .login-page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--gold-gradient);
+    border-radius: 2px;
+  }
+
+  .login-page-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin: 1.5rem 0 2rem;
+    font-size: 1rem;
+  }
+
+  .login-page-form .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  .login-page-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 2;
+    transition: var(--transition);
+    background: transparent;
+    border: none;
+    padding: 5px;
+  }
+  .password-toggle:hover { color: var(--gold); }
+
+  .btn-loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(26, 26, 46, 0.3);
+    border-top-color: #1a1a2e;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .login-btn.loading span,
+  .login-btn.loading i.fa-sign-in-alt { display: none; }
+
+  .register-link { text-align: center; margin-top: 1.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; }
+  .register-link a { color: var(--gold); text-decoration: none; font-weight: 600; transition: var(--transition); }
+  .register-link a:hover { color: #ffea80; text-decoration: underline; }
+
+  .login-features {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .login-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .login-feature-item i {
+    color: var(--gold);
+    width: 20px;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .login-trust-badge {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .login-trust-badge i { color: #4CAF50; }
+
+  .recaptcha-notice {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+  .recaptcha-notice a { color: var(--gold-light); text-decoration: none; }
+  .recaptcha-notice a:hover { text-decoration: underline; }
+
+  /* ===== MODAL REGISTRASI ===== */
+  .login-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .login-modal-content {
+    background: rgba(30, 30, 42, 0.9);
+    backdrop-filter: blur(25px);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .login-close {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: var(--transition);
+    line-height: 1;
+  }
+  .login-close:hover { color: var(--gold); }
+  .login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .login-logo .logo-icon {
+    font-size: 2.2rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .login-logo h1 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .login-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+  .login-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  .login-form .form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+  }
+  .login-form .form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    .login-page-card { padding: 2rem 1.5rem; border-radius: 20px; }
+    .login-page-logo h1 { font-size: 1.8rem; }
+    .login-page-logo .logo-icon { font-size: 2.2rem; }
+    .login-page-title { font-size: 1.4rem; }
+    .login-modal-content { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand"><i class="fas fa-crown"></i><h1>IRGXYMODS</h1></a>
+    <div class="header-actions">
+      <div style="position:relative;display:inline-block;">
+        <button class="settings-btn" id="settingsToggle" aria-label="Pengaturan"><i class="fas fa-cog"></i></button>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="profileDropdownBtn"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="themeToggleBtn"><i class="fas fa-palette"></i> Tema</button>
+          <div class="dropdown-divider"></div>
+          <a href="irgxymods.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tentang</a>
+          <button class="dropdown-item" id="helpBtn"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigasi Tab -->
+  <div class="nav-tabs-container">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="Fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab active"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN LOGIN PAGE ===== -->
+<main>
+  <div class="login-page-wrapper">
+    <div class="login-page-card card-3d" data-aos="fade-up" data-aos-duration="700">
+
+      <!-- Logo -->
+      <div class="login-page-logo">
+        <i class="fas fa-crown logo-icon"></i>
+        <h1>IRGXYMODS</h1>
+      </div>
+
+      <!-- Title -->
+      <h2 class="login-page-title">Masuk ke Akun Anda</h2>
+      <p class="login-page-subtitle">Akses konten eksklusif dan fitur premium</p>
+
+      <!-- Form Login -->
+      <form id="loginPageForm" class="login-page-form">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <div class="input-with-icon">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="loginEmail" name="email" 
+                   placeholder="Masukkan email Anda" required 
+                   autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="input-with-icon" style="position:relative;">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="loginPassword" name="password" 
+                   placeholder="Masukkan password" required 
+                   autocomplete="current-password" />
+            <button type="button" class="password-toggle" id="togglePassword" aria-label="Tampilkan password">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="remember-forgot">
+          <label class="remember-me">
+            <input type="checkbox" id="loginRemember" />
+            <span>Ingat saya</span>
+          </label>
+          <a href="#" class="forgot-password" id="forgotPasswordLink">Lupa password?</a>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginPageBtn">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Masuk</span>
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="divider"><span>atau masuk dengan</span></div>
+
+      <!-- Social Login -->
+      <div class="social-login">
+        <button type="button" class="social-btn google-btn" id="googleLoginBtn" title="Login dengan Google">
+          <i class="fab fa-google"></i>
+        </button>
+        <button type="button" class="social-btn facebook-btn" id="facebookLoginBtn" title="Login dengan Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+        <button type="button" class="social-btn twitter-btn" id="twitterLoginBtn" title="Login dengan Twitter">
+          <i class="fab fa-twitter"></i>
+        </button>
+      </div>
+
+      <!-- Register Link -->
+      <div class="register-link">
+        Belum punya akun? 
+        <a href="#" id="registerLink">Daftar sekarang</a>
+      </div>
+
+      <!-- Fitur Eksklusif -->
+      <div class="login-features">
+        <div class="login-feature-item"><i class="fas fa-check-circle"></i><span>Download tanpa batas aplikasi mod premium</span></div>
+        <div class="login-feature-item"><i class="fas fa-check-circle"></i><span>Akses konten eksklusif & update terbaru</span></div>
+        <div class="login-feature-item"><i class="fas fa-check-circle"></i><span>Prioritas dukungan 24/7 dari tim IrgxyMods</span></div>
+        <div class="login-feature-item"><i class="fas fa-check-circle"></i><span>Sinkronisasi riwayat download & aktivitas</span></div>
+      </div>
+
+      <!-- Trust Badge -->
+      <div class="login-trust-badge">
+        <i class="fas fa-shield-alt"></i>
+        <span>Koneksi aman & terenkripsi</span>
+      </div>
+
+      <!-- reCAPTCHA Notice -->
+      <div class="recaptcha-notice">
+        Dilindungi oleh reCAPTCHA. <a href="https://policies.google.com/privacy" target="_blank">Privacy</a> &middot;
+        <a href="https://policies.google.com/terms" target="_blank">Terms</a>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ===== MODAL REGISTRASI ===== -->
+<div id="registerModal" class="login-modal" style="display:none;">
+  <div class="login-modal-content card-3d">
+    <span class="login-close" id="registerModalClose">&times;</span>
+    <div class="login-logo">
+      <i class="fas fa-crown logo-icon"></i>
+      <h1>IRGXYMODS</h1>
+    </div>
+    <h2 class="login-title">Buat Akun Baru</h2>
+    <p class="login-subtitle">Daftar gratis dan nikmati fitur premium</p>
+
+    <form id="registerForm" class="login-form">
+      <div class="form-group">
+        <label for="registerName">Nama Lengkap</label>
+        <div class="input-with-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" id="registerName" placeholder="Masukkan nama lengkap" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="registerEmail">Email</label>
+        <div class="input-with-icon">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="registerEmail" placeholder="email@anda.com" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="registerPassword">Password</label>
+        <div class="input-with-icon" style="position:relative;">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="registerPassword" placeholder="Minimal 6 karakter" required minlength="6" />
+          <button type="button" class="password-toggle" id="toggleRegisterPassword">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="registerConfirmPassword">Konfirmasi Password</label>
+        <div class="input-with-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="registerConfirmPassword" placeholder="Ulangi password" required minlength="6" />
+        </div>
+      </div>
+      <button type="submit" class="login-btn" id="registerBtn">
+        <i class="fas fa-user-plus"></i>
+        <span>Daftar Sekarang</span>
+      </button>
+    </form>
+
+    <div class="register-link">
+      Sudah punya akun? <a href="#" id="loginFromRegister">Masuk di sini</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL PROFIL ===== -->
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content card-3d">
+    <span class="profile-close" id="profileModalClose">&times;</span>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-container">
+          <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="Avatar" class="profile-avatar" id="profileAvatar" />
+          <div class="profile-status"></div>
+          <div class="profile-edit-icon"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-title">
+          <h2 class="profile-name" id="profileName">Pengguna IRGXYMODS</h2>
+          <p class="profile-rank" id="profileRank">Member Premium</p>
+        </div>
+        <div class="profile-badges">
+          <div class="badge gold-badge"><i class="fas fa-crown"></i></div>
+          <div class="badge verified-badge"><i class="fas fa-check-circle"></i></div>
+          <div class="badge vip-badge"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item"><div class="stat-value" id="statDownloads">0</div><div class="stat-label">Aplikasi Diunduh</div></div>
+        <div class="stat-item"><div class="stat-value" id="statDays">0</div><div class="stat-label">Hari Aktif</div></div>
+        <div class="stat-item"><div class="stat-value" id="statBugs">0</div><div class="stat-label">Laporan Bug</div></div>
+      </div>
+      <div class="profile-info">
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-user-circle"></i> Informasi Pribadi</h3>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-label"><i class="fas fa-user"></i> Username</div><div class="info-value" id="profileUsernameDisplay">-</div></div>
+            <div class="info-item"><div class="info-label"><i class="fas fa-envelope"></i> Email</div><div class="info-value" id="profileEmailDisplay">-</div></div>
+          </div>
+        </div>
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+          <div id="activityTimeline"></div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn edit-profile"><i class="fas fa-edit"></i><span>Edit Profil</span></button>
+        <button class="profile-action-btn upgrade-premium"><i class="fas fa-crown"></i><span>Upgrade Premium</span></button>
+        <button class="profile-action-btn logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BACK TO TOP ===== -->
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+  <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.6);">✨ Support Modder IrgxyMods ✨</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank">Privacy Policy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank">Terms of Service</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank">Contact Us</a>
+    <a href="https://policies.google.com/faq?hl=id" class="footer-link" target="_blank">FAQ</a>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="main.js"></script>
+<script type="module">
+import { 
+  auth, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+  sendPasswordResetEmail,
+  updateProfile,
+  onAuthStateChanged,
+  signOut
+} from './firebase-config.js';
+
+// ===== TOAST HELPER =====
+function toast(msg, type = 'success') {
+  if (window.showToast) {
+    window.showToast(msg, type);
+  } else {
+    console.log(`[${type}] ${msg}`);
+    alert(msg);
+  }
+}
+
+// ===== SIMPAN SESI =====
+function saveSession(user) {
+  localStorage.setItem('irgxy_logged_in', 'true');
+  localStorage.setItem('irgxy_username', user.displayName || user.email);
+  localStorage.setItem('irgxy_uid', user.uid);
+  localStorage.setItem('irgxy_email', user.email || '');
+  localStorage.setItem('irgxy_photo', user.photoURL || '');
+}
+
+// ===== HAPUS SESI =====
+function clearSession() {
+  localStorage.removeItem('irgxy_logged_in');
+  localStorage.removeItem('irgxy_username');
+  localStorage.removeItem('irgxy_uid');
+  localStorage.removeItem('irgxy_email');
+  localStorage.removeItem('irgxy_photo');
+}
+
+// ===== CEK STATUS LOGIN =====
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    saveSession(user);
+    window.location.href = 'index.html';
+  }
+});
+
+// ===== TOGGLE PASSWORD =====
+function setupPasswordToggle(toggleId, inputId) {
+  const toggle = document.getElementById(toggleId);
+  const input = document.getElementById(inputId);
+  if (!toggle || !input) return;
+  toggle.addEventListener('click', () => {
+    const isPwd = input.getAttribute('type') === 'password';
+    input.setAttribute('type', isPwd ? 'text' : 'password');
+    const icon = toggle.querySelector('i');
+    if (icon) {
+      icon.classList.toggle('fa-eye', !isPwd);
+      icon.classList.toggle('fa-eye-slash', isPwd);
+    }
+  });
+}
+setupPasswordToggle('togglePassword', 'loginPassword');
+setupPasswordToggle('toggleRegisterPassword', 'registerPassword');
+
+// ===== LOGIN EMAIL/PASSWORD =====
+document.getElementById('loginPageForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const btn = document.getElementById('loginPageBtn');
+
+  if (!email || !password) {
+    toast('Harap isi email dan password', 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<div class="btn-loader"></div><span style="margin-left:8px;">Memproses...</span>';
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    saveSession(user);
+
+    if (window.addActivity) window.addActivity('login', 'Login berhasil sebagai ' + user.email);
+    toast('✅ Login berhasil! Selamat datang, ' + (user.displayName || user.email), 'success');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+
+  } catch (error) {
+    console.error('Login error:', error);
+    let msg = 'Login gagal. Silakan coba lagi.';
+
+    switch (error.code) {
+      case 'auth/user-not-found':
+        msg = 'Email tidak terdaftar. Silakan daftar terlebih dahulu.';
+        break;
+      case 'auth/wrong-password':
+        msg = 'Password salah. Silakan coba lagi.';
+        break;
+      case 'auth/invalid-email':
+        msg = 'Format email tidak valid.';
+        break;
+      case 'auth/too-many-requests':
+        msg = 'Terlalu banyak percobaan. Coba lagi nanti.';
+        break;
+      case 'auth/invalid-credential':
+        msg = 'Email atau password salah.';
+        break;
+      case 'auth/user-disabled':
+        msg = 'Akun Anda telah dinonaktifkan. Hubungi admin.';
+        break;
+      case 'auth/network-request-failed':
+        msg = 'Koneksi internet bermasalah. Periksa jaringan Anda.';
+        break;
+    }
+    toast('❌ ' + msg, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+  }
+});
+
+// ===== LOGIN GOOGLE =====
+document.getElementById('googleLoginBtn')?.addEventListener('click', async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    saveSession(user);
+
+    if (window.addActivity) window.addActivity('login', 'Login dengan Google: ' + user.email);
+    toast('✅ Login Google berhasil! Selamat datang, ' + user.displayName, 'success');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+
+  } catch (error) {
+    console.error('Google login error:', error);
+    let msg = 'Login Google gagal.';
+    if (error.code === 'auth/popup-closed-by-user') msg = 'Jendela login ditutup. Silakan coba lagi.';
+    else if (error.code === 'auth/popup-blocked') msg = 'Popup diblokir browser. Izinkan popup untuk situs ini.';
+    else if (error.code === 'auth/cancelled-popup-request') return;
+    else if (error.code === 'auth/account-exists-with-different-credential') msg = 'Email sudah terdaftar dengan metode lain.';
+    else if (error.code === 'auth/unauthorized-domain') msg = 'Domain belum terdaftar di Firebase Console.';
+    toast('❌ ' + msg, 'error');
+  }
+});
+
+// ===== LOGIN FACEBOOK =====
+document.getElementById('facebookLoginBtn')?.addEventListener('click', async () => {
+  try {
+    const provider = new FacebookAuthProvider();
+    provider.addScope('email');
+    provider.addScope('public_profile');
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    saveSession(user);
+
+    if (window.addActivity) window.addActivity('login', 'Login dengan Facebook: ' + user.email);
+    toast('✅ Login Facebook berhasil! Selamat datang, ' + user.displayName, 'success');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+
+  } catch (error) {
+    console.error('Facebook login error:', error);
+    let msg = 'Login Facebook gagal.';
+    if (error.code === 'auth/popup-closed-by-user') msg = 'Jendela login ditutup.';
+    else if (error.code === 'auth/account-exists-with-different-credential') msg = 'Email sudah terdaftar dengan metode lain.';
+    else if (error.code === 'auth/unauthorized-domain') msg = 'Domain belum terdaftar di Firebase Console.';
+    toast('❌ ' + msg, 'error');
+  }
+});
+
+// ===== LOGIN TWITTER/X =====
+document.getElementById('twitterLoginBtn')?.addEventListener('click', async () => {
+  try {
+    const provider = new TwitterAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    saveSession(user);
+
+    if (window.addActivity) window.addActivity('login', 'Login dengan Twitter/X');
+    toast('✅ Login Twitter/X berhasil!', 'success');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+
+  } catch (error) {
+    console.error('Twitter login error:', error);
+    let msg = 'Login Twitter/X gagal.';
+    if (error.code === 'auth/popup-closed-by-user') msg = 'Jendela login ditutup.';
+    else if (error.code === 'auth/unauthorized-domain') msg = 'Domain belum terdaftar di Firebase Console.';
+    toast('❌ ' + msg, 'error');
+  }
+});
+
+// ===== LUPA PASSWORD =====
+document.getElementById('forgotPasswordLink')?.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const email = prompt('Masukkan email Anda untuk reset password:');
+  if (!email) return;
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    toast('✅ Link reset password telah dikirim ke ' + email, 'success');
+  } catch (error) {
+    console.error('Reset password error:', error);
+    let msg = 'Gagal mengirim email reset.';
+    if (error.code === 'auth/user-not-found') msg = 'Email tidak terdaftar.';
+    else if (error.code === 'auth/invalid-email') msg = 'Format email tidak valid.';
+    toast('❌ ' + msg, 'error');
+  }
+});
+
+// ===== BUKA MODAL REGISTRASI =====
+document.getElementById('registerLink')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('registerModal').style.display = 'flex';
+});
+document.getElementById('registerModalClose')?.addEventListener('click', () => {
+  document.getElementById('registerModal').style.display = 'none';
+});
+document.getElementById('loginFromRegister')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('registerModal').style.display = 'none';
+});
+
+// ===== REGISTRASI =====
+document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('registerName').value.trim();
+  const email = document.getElementById('registerEmail').value.trim();
+  const password = document.getElementById('registerPassword').value;
+  const confirmPassword = document.getElementById('registerConfirmPassword').value;
+  const btn = document.getElementById('registerBtn');
+
+  if (!name || !email || !password || !confirmPassword) {
+    toast('Harap isi semua field', 'error');
+    return;
+  }
+  if (password.length < 6) {
+    toast('Password minimal 6 karakter', 'error');
+    return;
+  }
+  if (password !== confirmPassword) {
+    toast('Password dan konfirmasi tidak cocok', 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<div class="btn-loader"></div><span style="margin-left:8px;">Mendaftar...</span>';
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    await updateProfile(user, { displayName: name });
+    saveSession(user);
+
+    if (window.addActivity) window.addActivity('register', 'Akun baru terdaftar: ' + email);
+    toast('✅ Registrasi berhasil! Selamat datang, ' + name, 'success');
+    document.getElementById('registerModal').style.display = 'none';
+    setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+
+  } catch (error) {
+    console.error('Register error:', error);
+    let msg = 'Registrasi gagal.';
+
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        msg = 'Email sudah terdaftar. Silakan login atau gunakan email lain.';
+        break;
+      case 'auth/invalid-email':
+        msg = 'Format email tidak valid.';
+        break;
+      case 'auth/weak-password':
+        msg = 'Password terlalu lemah. Minimal 6 karakter.';
+        break;
+      case 'auth/operation-not-allowed':
+        msg = 'Registrasi email/password belum diaktifkan. Hubungi admin.';
+        break;
+      case 'auth/network-request-failed':
+        msg = 'Koneksi bermasalah. Periksa internet Anda.';
+        break;
+    }
+    toast('❌ ' + msg, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+  }
+});
+
+// ===== LOGOUT DARI MODAL PROFIL =====
+document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+  try {
+    await signOut(auth);
+    clearSession();
+    toast('Anda berhasil keluar', 'success');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+  } catch (error) {
+    console.error('Logout error:', error);
+    toast('Gagal logout', 'error');
+  }
+});
+</script>
+</body>
+</html>
